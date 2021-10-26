@@ -24,7 +24,7 @@ public class Client {
 
 	public void start(){
 		try {
-
+System.out.println(ip + port);
 			connection = new Socket(ip, port);
 
 			os = new ObjectOutputStream(connection.getOutputStream());
