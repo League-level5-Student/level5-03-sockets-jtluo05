@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 public class ClientGreeter {
-	static String ip = "127.0.0.1";
+	static String ip = "192.168.7.210";
 	static int port = 8080;
 
 	public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class ClientGreeter {
 			DataInputStream dis = new DataInputStream(s.getInputStream());
 			// 8. Use the DataInputStream object to print a message from the server using
 			// the readUTF() method.
-			dis.readUTF();
+			System.out.println(dis.readUTF());
 
 			// 9. Close the client's server object
 			s.close();

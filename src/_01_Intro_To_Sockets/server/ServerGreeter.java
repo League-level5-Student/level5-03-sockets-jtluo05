@@ -43,26 +43,27 @@ JOptionPane.showMessageDialog(null, "The server is waiting for a client to conne
 				 Socket socket=ss.accept();
 
 				// 10. Let the user know that the client has connected.
-
+JOptionPane.showMessageDialog(null, "The client has connected");
 				// 11. Create a DataInputStream object. When initializing it, use the Socket
 				// object you created in step 9 to call the getInputStream() method.
-
+DataInputStream dis= new DataInputStream(socket.getInputStream());
 				// 12. Print the message from the DataInputStream object using the readUTF()
 				// method
-
+System.out.println(dis.readUTF());
 				// 13. Create a DataOutputStream object. When initializing it, use the Server
 				// object you created in step 9 to call the getOutputStream() method.
-
+DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
 				// 14. Use the DataOutputStream object to send a message to the client using the
 				// writeUTF(String message) method.
-
+dos.writeUTF("Message :)");
 				// 15. Close the client server
+socket.close();
 			} catch (SocketTimeoutException ste) {
 				// TODO: handle exception
-				System.out.println("SocketTimeoutException ste");
+				JOptionPane.showMessageDialog(null, "SocketTimeoutException ste");
+				b=false;
 			} catch(IOException ioe) {
-				System.out.println("IOException ioe");
-
+JOptionPane.showMessageDialog(null, "IOException ioe");
 			}
 		}
 		// 6. If the program catches a SockeTimeoutException, let the user know about it
@@ -76,6 +77,15 @@ JOptionPane.showMessageDialog(null, "The server is waiting for a client to conne
 	public static void main(String[] args) {
 		// 16. In a new thread, create an object of the ServerGreeter class and start
 		// the thread. Don't forget the try-catch.
+		
+		ServerGreeter t = null;
+		try {
+			t = new ServerGreeter();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		t.start();
 
 	}
 }
