@@ -4,8 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import _00_Click_Chat.networking.Client;
-import _00_Click_Chat.networking.Server;
+import _02_Chat_Application.Client;
+import _02_Chat_Application.Server;
 
 public class ButtonClicker extends JFrame {
 	JButton button = new JButton("CLICK");
@@ -25,9 +25,9 @@ public class ButtonClicker extends JFrame {
 			server = new Server(8080);
 			setTitle("SERVER");
 			JOptionPane.showMessageDialog(null, "Server started at: " + server.getIPAddress() + "\nPort: " + server.getPort());
-			button.addActionListener((e)->{
-				server.sendClick();
-			});
+			//button.addActionListener((e)->{
+			//	server.sendClick();
+			//});
 			add(button);
 			setVisible(true);
 			setSize(400, 300);
@@ -40,9 +40,9 @@ public class ButtonClicker extends JFrame {
 			String prtStr = JOptionPane.showInputDialog("Enter the port number");
 			int port = Integer.parseInt(prtStr);
 			client = new Client(ipStr, port);
-			button.addActionListener((e)->{
-				client.sendClick();
-			});
+			//button.addActionListener((e)->{
+			//	client.sendClick();
+			//});
 			add(button);
 			setVisible(true);
 			setSize(400, 300);
