@@ -18,8 +18,7 @@ import javax.swing.JTextField;
 public class ChatApp extends JFrame{
 	static JTextArea tf1 = new JTextArea(2,45);
 	static JTextArea tf2 = new JTextArea(2,45);
-	static JLabel label1= new JLabel();
-	static JLabel label2= new JLabel();
+	static JTextArea label= new JTextArea();
 	static JButton button=new JButton("SEND");
 	static JPanel panel=new JPanel();
 	Server server;
@@ -36,20 +35,19 @@ public class ChatApp extends JFrame{
 			server = new Server(8080);
 			setTitle("SERVER");
 			JOptionPane.showMessageDialog(null, "Server started at: " + server.getIPAddress() + "\nPort: " + server.getPort());
+			
 			panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-
 			panel.add(tf1);
 			panel.add(button);
-			panel.add(label1);
-			label1.setSize(100, 100);
+			panel.add(label);
 			add(panel);
+			label.setEditable(false);
 			button.addActionListener((e)->{
 				message=tf1.getText();
 				fullmessage+="\n"+"Server: "+message;
 				tf1.setText("");
 				server.sendMessage();
-				label1.setText(fullmessage);
-				System.out.println(fullmessage);
+				label.setText(fullmessage);
 			});
 			setVisible(true);
 			setSize(600, 300);
@@ -62,15 +60,19 @@ public class ChatApp extends JFrame{
 			String prtStr = JOptionPane.showInputDialog("Enter the port number");
 			int port = Integer.parseInt(prtStr);
 			client = new Client(ipStr, port);
+			
+			panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 			panel.add(tf2);
 			panel.add(button);
+			panel.add(label);
 			add(panel);
+			label.setEditable(false);
 			button.addActionListener((e)->{
-				//currentText=tf2.getText();
-				//message=" Client: "+currentText;
+				message=tf2.getText();
+				fullmessage+="\n"+"Server: "+message;
 				tf2.setText("");
 				client.sendMessage();
-				System.out.println(message);
+				label.setText(fullmessage);
 			});
 			setVisible(true);
 			setSize(600, 300);
