@@ -38,7 +38,10 @@ public class Client {
 		}
 		
 		while (connection.isConnected()) {
+			
 			try {
+				String read=(String) is.readObject();
+				ChatApp.label.setText(read);
 				System.out.println(is.readObject());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -49,12 +52,13 @@ public class Client {
 	
 	public void sendMessage() {
 		try {
-			if (os != null) {
-				os.writeObject(ChatApp.message);
-				os.flush();
-			}
+			os.writeObject(ChatApp.message);
+			os.flush();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 }

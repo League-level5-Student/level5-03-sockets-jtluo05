@@ -47,7 +47,7 @@ public class ChatApp extends JFrame{
 				fullmessage+="\n"+"Server: "+message;
 				tf1.setText("");
 				server.sendMessage();
-				label.setText(fullmessage);
+				System.out.println(server.getIPAddress());
 			});
 			setVisible(true);
 			setSize(600, 300);
@@ -69,10 +69,10 @@ public class ChatApp extends JFrame{
 			label.setEditable(false);
 			button.addActionListener((e)->{
 				message=tf2.getText();
-				fullmessage+="\n"+"Server: "+message;
+				fullmessage+="\n"+"Client: "+message;
 				tf2.setText("");
 				client.sendMessage();
-				label.setText(fullmessage);
+				
 			});
 			setVisible(true);
 			setSize(600, 300);
